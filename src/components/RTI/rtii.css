@@ -1,0 +1,153 @@
+.content-container {
+    width: 100%;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.rti-container {
+    width: 96%;
+    display: flex;
+    margin: 32px auto;
+    /* padding: 50px; */
+    background-color: #f5eeee76;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.heading-container h4 {
+    text-align: center;
+    font-size: 24px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    padding: 40px;
+    margin-top: 25px;
+
+}
+
+.rti-container h5 {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+}
+
+.rti-container h4 {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+}
+
+.hindi-rti {
+    width: 45%;
+    margin: 0px auto;
+    text-align: justify;
+    padding: 100px;
+    /* background-color: #f5eeee76; */
+    /* border-radius: 10px; */
+    /* border-right: 5px solid yellow; */
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.english-rti {
+    width: 45%;
+    margin: 0px auto;
+    text-align: justify;
+    padding: 100px;
+    /* border-radius: 10px;
+     */
+
+
+    /* display: flex;
+    flex-direction: column; */
+
+}
+
+.rti-container li,
+p {
+    font-size: 16px;
+    padding: 5px;
+    padding-left: 10px;
+    list-style-type: circle;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.rti-container li {
+    margin-left: 45px;
+}
+
+#vertical-line {
+    border-right: 6px solid #ffcb00;
+    height: auto;
+    /* box-shadow: 3px 2px #0059ff6d; */
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+
+}
+
+@media  (max-width: 768px) {
+    #vertical-line {
+        order:2;
+         
+        align-items: center;      
+        border-right: none;
+        border-bottom: 6px solid #ffcb00;
+        height: 10px; /* adjust height as needed */
+        margin-left: 20px auto; /* adjust margin as needed */
+        margin-right: 20px auto; /* adjust margin as needed */
+    }
+}
+.content-container {
+
+    margin: 0 auto;
+}
+
+.heading-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.rti-container {
+    display: flex;
+    /* Set display to flex */
+}
+
+.hindi-rti {
+    flex: 1;
+    /* Take up 1/2 of the available space */
+
+}
+
+.english-rti {
+    flex: 1;
+    /* Take up 1/2 of the available space */
+
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .rti-container {
+        flex-direction: column;
+        /* Set flex-direction to column */
+    }
+
+    div.hindi-rti {
+        order: 1;
+        /* Change the order of the Hindi div */
+        padding: 10px;
+        margin: 5px auto;
+        width: 80%
+    }
+
+    div.english-rti {
+        order: 3;
+        /* Change the order of the English div */
+        padding: 10px;
+        margin: 5px auto;
+        width: 80%
+    }  
+}

@@ -1,0 +1,44 @@
+.geo-special-main-wrapper{
+    padding: 30px 0px 30px 30px;
+    height: 500px;
+}
+.geo-special-main-wrapper h4{
+    
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    padding: 1rem;
+}
+.geo-special-main-wrapper h3{
+    font-size: 20px;
+    margin: 10px 0px;
+    font-weight: 400;
+}
+.geo-special-main-wrapper a{
+    text-decoration: none;
+    color: black;
+}
+.geo-special-main-wrapper table{
+    border: 1px solid black;
+    margin: 32px auto;
+    width: 70%;
+
+}
+.geo-special-main-wrapper #para{
+    text-align: left;
+    padding-left: 30px;
+}
+.geo-special-main-wrapper .color-td{
+    /* border: 1px solid ; */
+    text-align: center;
+    background-color: #f5f5f5;
+}
+.geo-special-main-wrapper td{
+    text-align: center;
+}
+.geo-special-main-wrapper #main-col{
+    font-size: 24px;
+    background-color: #ffcb00;
+    text-align: center;
+    
+}

@@ -1,0 +1,152 @@
+
+/* .content-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-bottom: 20px;
+  } */
+  
+  .login-container {
+    background-color: #f5f5f5;
+    display: flex; 
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    margin-top: 20px;
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .login-form {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  .login-form input::placeholder{
+    padding-left: 5px;
+  }
+  #heading {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 24px;
+    color: black;
+  }
+  form .input{
+    width: 90%;
+    margin: 5px;
+  }
+  .user-details {
+    width: 100%;
+    height: 36.5px;
+    margin-top: 3%;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    color: black;
+    padding-left: 5px;
+    text-indent: 5px;
+  }
+  #userInput{
+    border-radius: 5px;
+    height: 36.5px;
+    padding-left: 5px;
+    text-indent: 5px;
+    font-size: 14px;
+
+  }
+  
+  .user-details:focus {
+    padding-left: -5px;
+  }
+  
+  
+  form select {
+    width: 100%;
+    height: 36.5px;
+    margin-top: 3%;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+    color: grey;
+    padding-left: 5px;
+    margin-bottom: 7px;
+    /* margin-left: 2px; */
+  }
+  .afterSelecting{
+    color:black;
+  }
+  form select::placeholder {
+    color: grey;
+  }
+  
+  .login-container  input::placeholder{
+    color: grey;
+    padding-left: 0px;
+  }
+  #log-button {
+    border-radius: 5px;
+    background-color: #1b3058;
+    color: white;
+    /* margin-top: 3%; */
+    height: 36.5px;
+    padding: 0px;
+    transition:  background-color 0.3s;
+  }
+  #log-button:hover{
+    background-color: #1050a2;
+  }
+  .signUp-div{
+    text-align: left;
+    margin-top: 1%;
+    margin-bottom: 30px;
+  }
+  .signUp-div a{
+    margin-left: 5px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .signUp-div p{
+    margin-bottom: 0px;
+  }
+  .signUp-div a:hover{
+    color: #0d6efd;
+  }
+  .error-div{
+    color: red;
+    text-align: center;
+    margin-top: 5px;
+  }
+  #signup-link{
+    margin-bottom: 0px;
+    font-size: 16px;
+  }
+  #signup-link a{
+    text-decoration: none;
+    margin-left: 3px;
+    font-size: 15px;
+    color: #0d6efd;
+  }
+  #signup-link a:hover{
+    color: #0d6efd;
+  }
+  .signUp-div a{
+    color: #0d6efd;
+
+  }
+  @media only screen and (max-width: 400px) {
+    .content-container .login-container{
+      width: 90%;
+      margin: 10px;
+      padding: 10px;
+    }
+  }

@@ -1,0 +1,19 @@
+.Map{
+  width: 96%;
+  height: 650px;
+  border-radius: 7px;
+  margin: 20px auto;
+  padding-bottom: 20px;
+}
+.address{
+    font-weight: 600;
+    font-size: 24px;
+    padding: 20px;
+    text-align: justify;
+    text-align: center;
+}
+.contentt-containerr{
+  display: flex;
+  flex-direction: column;
+
+}
