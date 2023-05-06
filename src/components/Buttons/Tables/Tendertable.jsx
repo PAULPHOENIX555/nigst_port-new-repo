@@ -64,7 +64,7 @@ function Tendertable() {
   const [tenderData, setTenderData] = useState([]);
 
   useEffect(() => {
-    fetch('https://nigst.onrender.com/tender/view')
+    fetch('http://ec2-65-2-161-9.ap-south-1.compute.amazonaws.com/tender/view')
       .then(response => response.json())
       .then(data => setTenderData(data.tender))
       .catch(error => console.error(error));
@@ -73,7 +73,7 @@ function Tendertable() {
   const [archiveData, setArchiveData]= useState([]);
 
   useEffect(() => {
-    fetch('https://nigst.onrender.com/tender/view_archive')
+    fetch('http://ec2-65-2-161-9.ap-south-1.compute.amazonaws.com/tender/view_archive')
       .then(response => response.json())
       .then(data => setArchiveData(data))
       .catch(error => console.error(error));
