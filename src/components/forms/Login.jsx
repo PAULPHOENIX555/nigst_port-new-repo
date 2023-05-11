@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
+import axios from 'axios';
+
+
 
 function LoginForm() {
+  const [input, setInput] = useState({
+    email:"",
+    password:""
+  })
+
+
+  function handleInput(e){
+      const {name,value} = e.target;
+      setInput((prev)=>({
+        ...prev,[name]:value
+      }))
+  }
   function generateCaptcha() {
     // Code for generating captcha
   }
 
   function validateCaptcha() {
-    // Code for validating captcha
+    const url = "http://ec2-65-2-161-9.ap-south-1.compute.amazonaws.com/secure/login";
+    const data ={
+      email:`${input.email}`,
+      password:`${input.password}`
+    }
+    axios.post(url,data).then((res)=>{
+      console.log(res)
+      window.location.hash='/student';
+    }).catch((error)=>{
+      console.log(error)
+    })
   }
 
   function route() {
@@ -23,10 +48,10 @@ function LoginForm() {
       </p>
       <form className="login-form">
         <div className="input">
-          <input type="text" placeholder="Email" name="email" className="user-details" id="email" />
+          <input type="text" placeholder="Email" name="email" className="user-details" id="email" onChange={handleInput} />
         </div>
         <div className="input">
-          <input type="password" placeholder="Password" name="password" className="user-details" id="password" />
+          <input type="password" placeholder="Password" name="password" className="user-details" id="password" onChange={handleInput}/>
         </div>
         {/* <div className="input">
           <select name="user-type" id="user-type">
