@@ -22,14 +22,15 @@ function LoginForm() {
     // Code for generating captcha
   }
 
-  function validateCaptcha() {
+  function validateCaptcha(e) {
+    e.preventDefault()
     const url = "http://ec2-65-2-161-9.ap-south-1.compute.amazonaws.com/secure/login";
     const data ={
       email:`${input.email}`,
       password:`${input.password}`
     }
     axios.post(url,data).then((res)=>{
-      console.log(res)
+      localStorage.setItem("user" , JSON.stringify(res.data))
       window.location.hash='/student';
     }).catch((error)=>{
       console.log(error)
@@ -61,7 +62,7 @@ function LoginForm() {
           </select>
         </div> */}
         {/* <iframe className='captchaframe' src="" frameborder="0"></iframe> */}
-        <div className="input">
+        {/* <div className="input">
           <div className="mainContainer" id="CaptchaBlock">
             <div className="captcha_div">
               <div className="form_div"><br/>
@@ -71,7 +72,7 @@ function LoginForm() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <input type="submit" value="Login" name="submit" className="user-details" id="log-button" onClick={validateCaptcha} />
         <div className="error-div"></div>
         <div className="signUp-div">

@@ -45,6 +45,7 @@ import RajBhasha from './components/rajbhasha/rajbhasha';
 import NavigationMenu from './components/SiteMap/sitemap';
 import Citizen from './components/NavComponents/citizencharacter/citizen';
 import Student from './Dashboard/Student';
+import Private from './Private';
 
 function App() {
   return (
@@ -52,7 +53,7 @@ function App() {
       <HashRouter>
 
         <OpenPageFromTop />
-        <Fixed/>
+        <Fixed />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/training' element={<Training />} />
@@ -94,7 +95,10 @@ function App() {
           <Route path='/components/rajbhasha/rajbhasha' element={<RajBhasha />} />
           <Route path='/components/SiteMap/sitemap' element={<NavigationMenu />} />
           <Route path='/citizen' element={<Citizen />} />
-          <Route path='/student' element={<Student/>}></Route>
+          <Route path='/student' element={
+            <Private><Student /></Private>
+          }>
+          </Route>
         </Routes>
         <Footer />
         <Copyright />
