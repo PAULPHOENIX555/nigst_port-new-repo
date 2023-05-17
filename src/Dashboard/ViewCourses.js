@@ -3,17 +3,39 @@ import React, { useEffect, useState } from 'react'
 
 export default function ViewCourses() {
     const [viewData , setViewData] = useState([]);
+    const [userData,setUserData] = useState({})
 
     useEffect(()=>{
-    let data = JSON.parse(localStorage.getItem("user"));
-    console.log(data.faculty);
-    const url = `http://ec2-65-2-161-9.ap-south-1.compute.amazonaws.com/admin/course_faculty/P_&_RS`;
-    axios.get(url).then((res)=>{
+    let userData = JSON.parse(localStorage.getItem("user"));
+    setUserData(userData)
+      const data={
+        name:`${userData.org}`,
+        studentID:`${userData.id}`
+      }
+        
+    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/enrollment/view_courses`;
+    axios.post(url,data).then((res)=>{
       setViewData(res.data.course);
     }).catch((error)=>{
       console.log(error)
     })
     },[])
+
+
+    function handleSubmit(e){
+      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/enrollment/enrol";
+      const data={
+        studentId:`${userData.org}`,
+        scheduleId:`${e.target.getAttribute("scheduling_id")}`
+      }
+      axios.post(url,data).then((res)=>{
+        console.log(res)
+      }).catch((error)=>{
+        console.log(error)
+      })
+    }
+
+
   return (
     <div>
       <div className='user-details-wrapper'>
@@ -43,10 +65,10 @@ export default function ViewCourses() {
               <tr key={index}>
                 <td>{index+1}</td>
                 <td>{data.course_no}</td>
-                <td>{data.course_code}</td>
-                <td>NA</td>
+                <td>{data.code}</td>
+                <td>{data.batch_no}</td>
                 <td>{data.title}</td>
-                <td>NA</td>
+                <td>{data.date_commencement}</td>
                 <td>{data.duration}</td>
                 <td>NA</td>
                 <td>NA</td>
@@ -54,8 +76,9 @@ export default function ViewCourses() {
                 <td>{data.course_mode}</td>
                 <td>{data.course_type}</td>
                 <td>{data.course_officer}</td>
-                <td>{data.course_director.split(" ")[3]}</td>
+                <td>{data.course_director}</td>
                 <td>{data.description}</td>
+                <td><button scheduling_id={data.scheduling_id} onClick={handleSubmit}>Enroll</button></td>
               </tr>
             )
           })

@@ -3,22 +3,15 @@ import React, { useEffect, useState } from "react";
 
 export default function VerificationPage() {
     const [verificationState, setVerificationState] = useState([])
-    // const [input,setInput] = useState({
-    //     email:"",
-    //     phone:""
-    // })
-    // function handleInputs(e){
-    //    const {name,value} = e.target;
-    //    setInput((prevInput)=>({
-    //     ...prevInput , [name]:value
-    //    })) 
-    // }
+ 
 
     useEffect(() => {
         const url = `https://nigst.onrender.com/secure/view_veri_status/shababali672@gmail.com`;
         axios.get(url).then((res) => {
-            console.log(res);
             setVerificationState(res.data.data[0])
+            if(verificationState.admin_verified && verificationState.email_verified && verificationState.mobile_verified ){
+                window.location.hash ="/student"
+            }
         }).catch((error) => {
             console.log(error);
         })

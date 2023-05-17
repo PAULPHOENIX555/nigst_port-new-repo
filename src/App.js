@@ -46,12 +46,11 @@ import NavigationMenu from './components/SiteMap/sitemap';
 import Citizen from './components/NavComponents/citizencharacter/citizen';
 import Student from './Dashboard/Student';
 import Private from './Private';
-
+import VerificationPage from './Dashboard/VerificationPage';
 function App() {
   return (
     <>
       <HashRouter>
-
         <OpenPageFromTop />
         <Fixed />
         <Routes>
@@ -96,9 +95,10 @@ function App() {
           <Route path='/components/SiteMap/sitemap' element={<NavigationMenu />} />
           <Route path='/citizen' element={<Citizen />} />
           <Route path='/student' element={
-            <Private><Student /></Private>
+            <Private><Student/></Private>
           }>
           </Route>
+          <Route path='/verification' element={<Private><VerificationPage/></Private>}></Route>
         </Routes>
         <Footer />
         <Copyright />

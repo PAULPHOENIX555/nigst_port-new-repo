@@ -24,14 +24,27 @@ function LoginForm() {
 
   function validateCaptcha(e) {
     e.preventDefault()
-    const url = "http://ec2-65-2-161-9.ap-south-1.compute.amazonaws.com/secure/login";
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/login";
     const data ={
       email:`${input.email}`,
       password:`${input.password}`
     }
     axios.post(url,data).then((res)=>{
+      console.log(res)
       localStorage.setItem("user" , JSON.stringify(res.data))
-      window.location.hash='/student';
+      const data = JSON.parse(localStorage.getItem("user"));
+      if(res.data.verification){
+        window.location.hash='/student';
+      }
+      else if(res.data.message = "Email not verified" ){
+        window.location.hash='/verification';
+      }
+      else if( res.data.message = "Phone not verified"){
+        window.location.hash='/verification';
+      }
+      else if(res.data.message = "Admin not verified"){
+        window.location.hash='/verification';
+      }
     }).catch((error)=>{
       console.log(error)
     })
