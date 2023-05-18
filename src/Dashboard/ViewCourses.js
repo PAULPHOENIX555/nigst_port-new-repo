@@ -7,7 +7,7 @@ export default function ViewCourses() {
 
     useEffect(()=>{
     let userData = JSON.parse(localStorage.getItem("user"));
-    setUserData(userData)
+    setUserData(userData) 
       const data={
         name:`${userData.org}`,
         studentID:`${userData.id}`
