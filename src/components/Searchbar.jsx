@@ -6,7 +6,7 @@ import { AiOutlineSearch, AiOutlineClose } from 'react-icons/ai'
 function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-console.log(data)
+// console.log(data)
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
