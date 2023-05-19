@@ -25,7 +25,7 @@ export default function ViewCourses() {
     function handleSubmit(e){
       const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/enrollment/enrol";
       const data={
-        studentId:`${userData.org}`,
+        studentId:`${userData.id}`,
         scheduleId:`${e.target.getAttribute("scheduling_id")}`
       }
       axios.post(url,data).then((res)=>{
@@ -57,7 +57,7 @@ export default function ViewCourses() {
             <th>Course Officer</th>
             <th>Faculty</th>
             <th>Course Description</th>
-            <th>Enroll/Cancel</th>
+            <th>Enroll</th>
         </tr>
         {
           viewData.map((data,index)=>{
@@ -67,17 +67,17 @@ export default function ViewCourses() {
                 <td>{data.course_no}</td>
                 <td>{data.code}</td>
                 <td>{data.batch_no}</td>
-                <td>{data.title}</td>
-                <td>{data.date_commencement}</td>
+                <td>{data.coursename}</td>
+                <td>{data.commencementdate}</td>
                 <td>{data.duration}</td>
                 <td>NA</td>
                 <td>NA</td>
-                <td>{data.course_category}</td>
-                <td>{data.course_mode}</td>
-                <td>{data.course_type}</td>
-                <td>{data.course_officer}</td>
-                <td>{data.course_director}</td>
-                <td>{data.description}</td>
+                <td>{data.category}</td>
+                <td>{data.mode}</td>
+                <td>{data.type}</td>
+                <td>{data.officer}</td>
+                <td>{data.faculty}</td>
+                <td>{data.coursedescription}</td>
                 <td><button scheduling_id={data.scheduling_id} onClick={handleSubmit}>Enroll</button></td>
               </tr>
             )
