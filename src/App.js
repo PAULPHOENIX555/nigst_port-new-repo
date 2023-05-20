@@ -48,6 +48,7 @@ import Student from './Dashboard/Student';
 import Private from './Private';
 import VerificationPage from './Dashboard/VerificationPage';
 import ResetPassword from './components/forms/ResetPassword';
+import CourseCalender from './components/CourseCalender';
 function App() {
   return (
     <>
@@ -96,6 +97,7 @@ function App() {
           <Route path='/components/SiteMap/sitemap' element={<NavigationMenu />} />
           <Route path='/citizen' element={<Citizen />} />
           <Route path='/reset/:token' element={<ResetPassword/>}></Route>
+          <Route path='/courses' element={<CourseCalender/>}></Route>
           <Route path='/student' element={
             <Private><Student/></Private>
           }>
