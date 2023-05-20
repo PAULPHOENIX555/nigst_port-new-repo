@@ -1,5 +1,5 @@
 
-import { HashRouter as Router, Routes, Route, NavLink, HashRouter } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, NavLink, HashRouter,useRoutes } from 'react-router-dom'
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
@@ -47,6 +47,7 @@ import Citizen from './components/NavComponents/citizencharacter/citizen';
 import Student from './Dashboard/Student';
 import Private from './Private';
 import VerificationPage from './Dashboard/VerificationPage';
+import ResetPassword from './components/forms/ResetPassword';
 function App() {
   return (
     <>
@@ -94,6 +95,7 @@ function App() {
           <Route path='/components/rajbhasha/rajbhasha' element={<RajBhasha />} />
           <Route path='/components/SiteMap/sitemap' element={<NavigationMenu />} />
           <Route path='/citizen' element={<Citizen />} />
+          <Route path='/reset/:token' element={<ResetPassword/>}></Route>
           <Route path='/student' element={
             <Private><Student/></Private>
           }>

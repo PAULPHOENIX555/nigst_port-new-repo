@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import './forgetpassword.css'
+import axios from 'axios';
 
 function ForgotPasswordForm() {
   const [email, setEmail] = useState('');
-  const [type, setType] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/forget";
+    const data={
+      email:`${email}`
+    }
+    axios.post(url,data).then((res)=>{
+      console.log(res)
+    }).catch((error)=>{
+      console.log(error)
+    })
   };
 
   return (
@@ -25,11 +33,6 @@ function ForgotPasswordForm() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <select name="type" id="select-role" value={type} onChange={(e) => setType(e.target.value)} >
-            <option value="" selected disabled>Select Type</option>
-            <option value="student/departmental">Student /Departmental</option>
-            <option value="faculty">Faculty</option>
-          </select>
           <div onChange={(e) => setError(e.target.value)}className="error-message" style={{ color: 'rgba(255, 0, 0, 0.589)', fontSize: '15px' }}>{error}</div>
           <button type="submit" className="password-button">
             Forgot password
