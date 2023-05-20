@@ -6,7 +6,7 @@ export default function VerificationPage() {
  
 
     useEffect(() => {
-        const url = `https://nigst.onrender.com/secure/view_veri_status/shababali672@gmail.com`;
+        const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/shababali672@gmail.com`;
         axios.get(url).then((res) => {
             setVerificationState(res.data.data[0])
             if(verificationState.admin_verified && verificationState.email_verified && verificationState.mobile_verified ){
@@ -19,7 +19,7 @@ export default function VerificationPage() {
 
     function handleEmailVerification(e) {
         e.preventDefault();
-        const url = "https://nigst.onrender.com/secure/resend";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/resend";
         const data = {
             email: `${"shababali672@gmail.com"}`
         }
@@ -32,7 +32,7 @@ export default function VerificationPage() {
 
     function handleOTPVerification(e) {
         e.preventDefault();
-        const url = "https://nigst.onrender.com/sms/resend";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sms/resend";
         const data = {
             email: "shababali672@gmail.com"
         }
