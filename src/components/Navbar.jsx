@@ -320,7 +320,7 @@ const Navbar = () => {
 
 
 
-              <Link to="/Courses" className="block px-4 py-2 text-white hover:text-yellow-300">Courses</Link>
+              <Link to="/courses" className="block px-4 py-2 text-white hover:text-yellow-300">Courses</Link>
               <Link to="/login" className="block px-4 py-2 text-white hover:text-yellow-300">Course Enrollment</Link>
               <Link to="/feesandpayment" className="block px-4 py-2 text-white hover:text-yellow-300">Fee and Payment</Link>
             </div>
