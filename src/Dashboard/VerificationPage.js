@@ -68,11 +68,11 @@ export default function VerificationPage() {
       };
     return (
         <div style={mainDivStyle}>
-            <form className="relative" style={{display:"flex",flexDirection:"column",justifyContent:"center",width:"fit-content",border:"3px solid grey",padding:"30px",backgroundColor:"#f5f5f5"}}>
-            <button style={{ position: "absolute", top: "1px",right: "1px"}} onClick={handleCloseButtonClick}>
+            <form className="relative" style={{display:"flex",flexDirection:"column",justifyContent:"center",borderRadius:"8px",width:"50%",padding:"30px",backgroundColor:"#f5f5f5"}}>
+            <button style={{ position: "absolute", top: "8px",right: "8px"}} onClick={handleCloseButtonClick}>
             <FaTimes size={17} />
         </button>
-            <h3 style={{textAlign:"center",fontSize:"30px"}}>Verification Page</h3>
+            <h3 style={{textAlign:"center",fontSize:"30px",margin:"10px"}}>Verification</h3>
                 <div style={{display:"flex" , alignItems:"center" , margin:"10px 0px"}}>
                 <span style={{fontSize:"20px"}}>NIGST Verification</span>
                 {verificationState.admin_verified ? <button className="mx-5"><span className="text-green-500">Yes</span>/No</button> : <><button className="mx-5">Yes/<span className="text-red-500">No</span></button></>}
@@ -81,7 +81,7 @@ export default function VerificationPage() {
                 <span style={{fontSize:"20px"}}>Email Verification</span>
                 {verificationState.email_verified ? <button style={{ backgroundColor: "green", color: "green", borderRadius: "50%", height: "40px", width: "40px",marginLeft:"20px" }} ></button> : <><button onClick={handleEmailVerification} style={buttonStyle}>Resend Email</button></>}
                 </div>
-                <div style={{display:"flex" , alignItems:"center",margin:"10px 0px"}}>
+                <div style={{display:"flex" , alignItems:"center",margin:"10px 0px"}}>      
                 <span style={{fontSize:"20px"}}>Phone Verification</span>
                 {verificationState.mobile_verified ? <button className="mx-5"><span className="text-green-500">Yes</span>/No</button> : <><button onClick={handleOTPVerification} className="mx-5">Yes/<span className="text-red-500">No</span> Resend OTP</button></>}
                 </div>
