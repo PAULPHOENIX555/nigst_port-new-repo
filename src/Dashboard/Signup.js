@@ -127,11 +127,15 @@ export default function Signup() {
         organization: `${org}`
 
       }
-      axios.post(url, data).then((res) => {
-        console.log(res)
-      }).catch((error) => {
-        console.log(console.log(error))
+      axios.post(url, data)
+      .then((res) => {
+        console.log(res);
+        alert('Signup successful!'); // Display success message
       })
+      .catch((error) => {
+        console.log(error);
+        alert('Signup failed! Please try again.'); // Display error message
+      });
     }
   }
 
@@ -279,6 +283,7 @@ export default function Signup() {
 
 
           <Button
+          
           id="submit-button" // Give the button an ID for easier DOM manipulation
           ref={submitButtonRef}
           value={"Submit"}
