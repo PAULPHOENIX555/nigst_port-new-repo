@@ -38,7 +38,8 @@ function handleInputs(e){
 
   function handleSignUp(){
     // fname,mname,lname,dob,phone,gender,email password,organization
-  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/signup"
+  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/signup";
+  const otpUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sms/so";
     const data={
       fname:`${input.fname}`,
       mname:`${input.mname}`,
@@ -50,12 +51,21 @@ function handleInputs(e){
       password:`${input.password}`,
       organization:`${org}` 
     }
+    const dataEmail={
+      email:`${input.email}`
+    }
+    axios.post(otpUrl,dataEmail).then((res)=>{
+      console.log(res)
+    }).catch((error)=>{
+      console.log(error);
+    })
     axios.post(url,data).then((res)=>{
       console.log(res)
     }).catch((error)=>{
       console.log(console.log(error))
     })
   }
+
   return (
     <div className='flex justify-center py-20 '>
       <div className="department-creation-wrapper rounded-md mx-auto my-auto md:w-1/2 lg:w-1/3 xl:w-1/4">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../assests/Website Logo NIGST Small.png'
 import '../CSS/app.css'
 import ViewCourses from './ViewCourses';
@@ -12,6 +12,16 @@ export default function Student() {
  const [viewCourse , setViewCourse] = useState(true);
  const [ViewEnrollCourse , setViewEnrollCourse] = useState(false);
  const [viewCancelledEnroll,setViewCanceledEnroll] = useState(false);
+
+ useEffect(()=>{
+//     const hrefLength = window.location.href.split("/").length;
+//    console.log(hrefLength)
+//    console.log(window.location.href.split("/"))
+   localStorage.setItem("showData",true)
+//    if(window.location.href.split("/")[hrefLength-1] === "student"){
+//     console.log("yes")
+//    }
+ },[])
 
 function viewCourseFun(){
     setViewCourse(true);
