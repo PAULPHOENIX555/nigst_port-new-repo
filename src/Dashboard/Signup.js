@@ -29,6 +29,7 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const submitButtonRef = useRef(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
 
 
@@ -99,7 +100,6 @@ export default function Signup() {
   }
 
   function handleSignUp() {
-    // fname,mname,lname,dob,phone,gender,email password,organization
     if (
       input.fname &&
       input.lname &&
@@ -113,8 +113,8 @@ export default function Signup() {
       emailError === '' &&
       passwordError === '' &&
       !isSubmitting
-    ){
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/signup"
+    ) {
+      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/signup";
       const data = {
         fname: `${input.fname}`,
         mname: `${input.mname}`,
@@ -125,19 +125,39 @@ export default function Signup() {
         email: `${input.email}`,
         password: `${input.password}`,
         organization: `${org}`
-
-      }
+      };
+  
       axios.post(url, data)
-      .then((res) => {
-        console.log(res);
-        alert('Signup successful!'); // Display success message
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('Signup failed! Please try again.'); // Display error message
-      });
+        .then((res) => {
+          console.log(res);
+          setSuccessMessage("Registration Successful! A verification link has been sent to your registered email. Please verify your email."); // Display success message
+          setInput({
+            fname: "",
+            lname: "",
+            mname: "",
+            phone: "",
+            email: "",
+            password: "",
+            dob: "",
+            cpassword: ""
+          });
+          setGender("");
+          setOrg("");
+          setEmailError("");
+          setPasswordError("");
+          setShowPassword(false);
+          setShowConfirmPassword(false);
+          setError("");
+          setPasswordMatched(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('Signup failed! Please try again.'); // Display error message
+        });
     }
   }
+  
+  
 
   //submit button bounce
   // function handleBounceEffect() {
@@ -158,7 +178,7 @@ export default function Signup() {
           <div className="flex flex-wrap mb-2">
             <div className="w-full md:w-1/3 px-2 mb-4 md:mb-0">
               <div className="relative">
-                <Inputs type="text" placeholder="First Name" name="fname" required={true} value={input.fname} fun={handleInputs} />
+                <Inputs type="text" placeholder="First Name" name="fname" required={true} value={input.fname} on onChange={handleInputs} fun={handleInputs} />
                 {!input.fname && <span className="absolute top-1 right-1 text-red-500 text-xl">*</span>}
               </div>
             </div>
@@ -293,6 +313,9 @@ export default function Signup() {
           }}
           disabled={!passwordMatched || emailError !== 'invalid email' || passwordError !== 'invalid password'}
         />
+        {successMessage && (
+          <div className="bg-green-200 text-green-800 p-4 mt-4">{successMessage}</div>
+        )}
         </div>
       </div>
     )
