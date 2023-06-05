@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import Inputs from '../components/Inputs';
-import Button from '../components/Buttons/Button';
+import BouncyButton from '../components/Buttons/Button';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
-
+import { SpinnerCircular } from 'spinners-react';
 
 export default function Signup() {
   const [input, setInput] = useState({
@@ -29,7 +30,10 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const submitButtonRef = useRef(null);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
 
 
@@ -114,6 +118,7 @@ export default function Signup() {
       passwordError === '' &&
       !isSubmitting
     ) {
+      setLoading(true);
       const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/signup";
       const data = {
         fname: `${input.fname}`,
@@ -130,7 +135,9 @@ export default function Signup() {
       axios.post(url, data)
         .then((res) => {
           console.log(res);
-          setSuccessMessage("Registration Successful! A verification link has been sent to your registered email. Please verify your email."); // Display success message
+          setMessage(res.data.message || "Registration Successful!");
+          setErrorMessage("");
+          // Reset the form values
           setInput({
             fname: "",
             lname: "",
@@ -143,38 +150,36 @@ export default function Signup() {
           });
           setGender("");
           setOrg("");
+          setPasswordMatched(false);
           setEmailError("");
           setPasswordError("");
-          setShowPassword(false);
-          setShowConfirmPassword(false);
-          setError("");
-          setPasswordMatched(false);
         })
         .catch((error) => {
           console.log(error);
-          alert('Signup failed! Please try again.'); // Display error message
+          if (error.response && error.response.data && error.response.data.errors) {
+            const errorMessages = error.response.data.errors.map((error) => error.msg);
+            setMessage("");
+            setErrorMessage("Signup failed! " + errorMessages.join(' '));
+          } else if (error.response && error.response.data && error.response.data.message) {
+            setMessage("");
+            setErrorMessage("Signup failed! " + error.response.data.message);
+          } else {
+            setMessage("");
+            setErrorMessage("Signup failed! Please try again.");
+          }
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   }
-  
-  
-
-  //submit button bounce
-  // function handleBounceEffect() {
-  //   if (!isSubmitting) {
-  //     const submitButton = submitButtonRef.current;
-  //     submitButton.classList.add('bounce'); // Add the "bounce" CSS class
-  //     setTimeout(() => {
-  //       submitButton.classList.remove('bounce'); // Remove the "bounce" CSS class after a delay
-  //     }, 1000);
-  //   }
-  // }
 
 
     return (
       <div className='flex justify-center py-20 '>
         <div className="department-creation-wrapper rounded-md mx-auto my-auto md:w-1/2 lg:w-1/3 xl:w-1/4">
           <h3 className="text-center mb-6">Sign Up</h3>
+          <p className="text-center mb-6">Already Registered? <Link to="/login" className="text-blue-600">login here</Link></p>
           <div className="flex flex-wrap mb-2">
             <div className="w-full md:w-1/3 px-2 mb-4 md:mb-0">
               <div className="relative">
@@ -302,7 +307,7 @@ export default function Signup() {
           <div style={{ textAlign: 'left' }}><p className='italic'>NOTE: Fields with <span className="text-red-500 text-xl" style={{ verticalAlign: 'middle' }}>*</span> are mandatory</p></div>
 
 
-          <Button
+          <BouncyButton
           
           id="submit-button" // Give the button an ID for easier DOM manipulation
           ref={submitButtonRef}
@@ -313,9 +318,24 @@ export default function Signup() {
           }}
           disabled={!passwordMatched || emailError !== 'invalid email' || passwordError !== 'invalid password'}
         />
-        {successMessage && (
-          <div className="bg-green-200 text-green-800 p-4 mt-4">{successMessage}</div>
-        )}
+        {loading && (
+        <div className="flex justify-center absolute  inset-0 w-full">
+          <div className="flex justify-center ">
+          <SpinnerCircular size={60} color="#1d4ed8" />
+          </div>
+        </div>
+      )}
+        
+        {message && (
+        <div  style={{ backgroundColor: "#22c55e", marginTop:"10px", padding: "10px", color: "white", width:"full,",borderRadius:"5px" }}>
+          {message}
+        </div>
+      )}
+      {errorMessage && (
+        <div style={{ backgroundColor: "red", marginTop:"10px", padding: "10px", color: "white", width:"full,",borderRadius:"5px"  }}>
+          {errorMessage}
+        </div>
+      )}
         </div>
       </div>
     )
