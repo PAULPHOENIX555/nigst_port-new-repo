@@ -61,6 +61,8 @@ export default function VerificationPage() {
             email: user.email,
             otp: otp
         };
+        setOTP('');
+        setShowOTPField(false);
         axios.post(url, data).then((res) => {
             console.log(res);
             // Perform further actions based on the verification response
