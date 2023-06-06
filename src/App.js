@@ -124,7 +124,6 @@ function App() {
               element={<Private><VerificationPage /></Private>}
             />
           </Routes>
-    
           {!isStudentRoute() && <Footer />}
           {!isStudentRoute() &&<Copyright />}
           
