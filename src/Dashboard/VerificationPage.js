@@ -56,12 +56,31 @@ export default function VerificationPage() {
 
     const handleSubmitOTP = (e) => {
         e.preventDefault();
-        // Perform OTP verification logic here
-        console.log('OTP:', otp);
-        // Reset state after verification
-        setOTP('');
-        setShowOTPField(false);
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sms/vs";
+        const data = {
+            email: user.email,
+            otp: otp
+        };
+        axios.post(url, data).then((res) => {
+            console.log(res);
+            // Perform further actions based on the verification response
+            // For example, if verification is successful, update the state or redirect to another page
+            if (res.data.success) {
+                // Verification successful
+                // Update the verification state or redirect to another page
+                // For example:
+                 setVerificationState(prevState => ({ ...prevState, mobile_verified: true }));
+                // window.location.hash = "/student";
+            } else {
+                // Verification failed
+                // Display an error message or handle it accordingly
+            }
+        }).catch((error) => {
+            console.log(error);
+            // Handle the error case
+        });
     };
+    
 
     const mainDivStyle = {
         width: "100%",
