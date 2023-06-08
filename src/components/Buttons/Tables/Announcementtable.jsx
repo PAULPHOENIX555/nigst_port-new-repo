@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Tendertable.css'
+import axios from "axios";
+import { AiFillFilePdf } from 'react-icons/ai';
+
 
 function Announcementtable() {
   const [showDiv1, setShowDiv1] = useState(true);
   const [showDiv2, setShowDiv2] = useState(false);
   const [buttonText, setButtonText] = useState("Archived Announcements");
+  const [viewAnn , setViewAnn] = useState([]);
+  const [viewAnnArchive , setViewAnnArchive] = useState([]);
 
   const handleButtonClick = () => {
     setShowDiv1(!showDiv1);
@@ -59,7 +64,28 @@ function Announcementtable() {
     });
   };
 
+useEffect(()=>{
+  viewAnnouncement();
+  viewArchiveAnn();
+},[]);
 
+  function viewAnnouncement(){
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/webannouncement";
+    axios.get(url).then((res)=>{
+      setViewAnn(res.data.announcement)
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+
+  function viewArchiveAnn(){
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_archive";
+    axios.get(url).then((res)=>{
+      setViewAnnArchive(res.data.pdfs)
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
   return (
     <div>
       <button className="togglebtn" onClick={handleButtonClick}>{buttonText}</button>
@@ -70,10 +96,10 @@ function Announcementtable() {
           <table>
             <thead>
               <tr>
-                <th colspan="3" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>Latest Announcements</th>
+                <th colSpan="4" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>Latest Announcements</th>
               </tr>
               <tr>
-              
+              <th>S.No</th>
               <th>Date</th>
             <th>Title</th>
             <th>Description</th>
@@ -81,36 +107,20 @@ function Announcementtable() {
             </thead>
 
             <tbody className="main-wrapper" id="Names">
-            <tr>
-            <td>2023-02-27</td>
-            <td>Notice 4</td>
-            <td>Ponec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
+           
+          {
+            viewAnn.map((data,index)=>{
+              return (
+                <tr>
+                <td>{index+1}</td>
+                <td>{data.posteddate}</td>
+                <td>{data.title}</td>
+                <td>{data.description}</td>
+              </tr>
+              )
+            })
+          }
+          
             </tbody>
           </table>
         </div></div>}
@@ -121,63 +131,32 @@ function Announcementtable() {
           <table>
             <thead>
               <tr>
-                <th colspan="4" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>Archived Announcements</th>
+                <th colspan="5" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>Archived Announcements</th>
               </tr>
               <tr>
-              
-              <th>Date</th>
+            <th>S.No</th>  
+            <th>Date</th>
             <th>Title</th>
             <th>Description</th>
+            <th>PDF</th>
               </tr>
             </thead>
 
             <tbody className="main-wrapper" id="names">
-            <tr>
-            <td>2023-02-27</td>
-            <td>Notice 4</td>
-            <td>Ponec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-            <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
-          <tr>
-            <td>2023-02-26</td>
-            <td>Notice 3</td>
-            <td>Donec varius justo sit amet sapien lobortis consectetur.</td>
-          </tr>
           
+           {
+            viewAnnArchive.map((data,index)=>{
+              return(
+                <tr>
+                  <td>{index+1}</td>
+                <td>{data.title}</td>
+                <td>{data.postedat}</td>
+                <td>{data.description}</td>
+                <td><AiFillFilePdf style={{fontSize:"30px",color:"red"}}/></td>
+              </tr>
+              )
+            })
+           }
             </tbody>
           </table>
         </div>

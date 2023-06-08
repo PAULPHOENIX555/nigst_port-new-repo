@@ -21,7 +21,7 @@ export default function Announcements() {
   }, []);
   
   useEffect(()=>{
-    const url = "https://nigst.onrender.com/announcement/view"
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/webannouncement";
     axios.get(url).then((response)=>{
         console.log(response.data)
         setAnnouncements(response.data)
