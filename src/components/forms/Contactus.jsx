@@ -9,50 +9,73 @@ function ContactForm() {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const newErrors = [];
-
+  
     // Validate form fields
     if (name.trim() === '') {
       newErrors.push('Name is required.');
     }
-
+  
     if (email.trim() === '') {
       newErrors.push('Email address is required.');
     }
-
+  
     if (phone.trim() === '') {
       newErrors.push('Phone number is required.');
     }
-
+  
     if (subject.trim() === '') {
       newErrors.push('Subject is required.');
     }
-
+  
     if (message.trim() === '') {
       newErrors.push('Message is required.');
     }
-
+  
     if (newErrors.length > 0) {
       setErrors(newErrors);
     } else {
-      // Submit form data
-      console.log('Name:', name);
-      console.log('Email:', email);
-      console.log('Phone:', phone);
-      console.log('Subject:', subject);
-      console.log('Message:', message);
-
-      // Clear form fields
-      setName('');
-      setEmail('');
-      setPhone('');
-      setSubject('');
-      setMessage('');
-      setErrors([]);
+      try {
+        const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/v0', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            subject,
+            message,
+          }),
+        });
+  
+        if (response.ok) {
+          // Submission successful
+          console.log('Form submitted successfully.');
+          // Clear form fields
+          setName('');
+          setEmail('');
+          setPhone('');
+          setSubject('');
+          setMessage('');
+          setErrors([]);
+        } else {
+          // Error occurred during submission
+          const errorData = await response.json();
+          console.log('Form submission failed:', errorData);
+          // Handle the error as needed
+        }
+      } catch (error) {
+        // Network error occurred
+        console.log('Error submitting the form:', error);
+        // Handle the error as needed
+      }
     }
   };
+  
 
   return (
     <div className="form-container">
