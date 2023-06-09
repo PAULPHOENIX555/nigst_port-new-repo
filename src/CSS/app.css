@@ -4,7 +4,7 @@
     height: 100vh;
 }
 .side-bar-wrapper ul li:hover{
-    background-color: #ffcb00;
+    color: #ffcb00;
 }
 .header-logo-admin-panel{
     height: 140px;
@@ -44,6 +44,7 @@
 .demo option:checked{
     color: red;
 }
+
 .department-creation-wrapper  input {
    width: 100%;
    border: none;

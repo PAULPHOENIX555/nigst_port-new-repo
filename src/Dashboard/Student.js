@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../assests/Website Logo NIGST Small.png'
-import '../CSS/app.css'
+import "../CSS/app.css"
 import ViewCourses from './ViewCourses';
 import ViewEnrolledCourse from './ViewEnrolledCourse';
 import ViewCanceledCourse from './ViewCanceledCourse';
@@ -63,7 +63,7 @@ function logout(){
                 </div>
                 <button className='pt-3 pb-3 pl-10 pr-10 bg-[rgb(27,48,88)] text-white rounded-md' style={{ position: 'absolute', right: '20px' }} onClick={logout}>Logout</button>
             </header>
-            <div className='min-h-max flex justify-center border-t-2'>
+            <div className='min-h-max flex justify-center border-t-2 '>
                 { viewCourse ? <ViewCourses/> : ""}
                 {ViewEnrollCourse && <ViewEnrolledCourse/>}
                 {viewCancelledEnroll && <ViewCanceledCourse/>}

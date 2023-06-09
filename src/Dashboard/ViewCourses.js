@@ -37,8 +37,8 @@ export default function ViewCourses() {
 
 
   return (
-    <div>
-      <div className='user-details-wrapper'>
+    <div >
+      <div className='user-details-wrapper mt-5'>
     <table>
       <tbody>
         <tr>

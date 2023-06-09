@@ -26,7 +26,7 @@ function ViewCanceledCourse(){
  return(
     <>
          <div>
-      <div className='user-details-wrapper'>
+      <div className='user-details-wrapper mt-5'>
     <table>
       <tbody>
         <tr>
