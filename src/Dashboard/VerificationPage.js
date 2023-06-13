@@ -161,7 +161,7 @@ return (
         </div>
         <div style={{ display: "flex", alignItems: "center", margin: "10px 0px" }}>
           <span style={{ fontSize: "20px" }}>Email Verification</span>
-          {verificationState.email_verified ? <button className="mx-5"><span className="text-green-500">Verified</span></button> : <><button onClick={handleEmailVerification} style={buttonStyle}>click here! to verify</button></>}
+          {verificationState.email_verified ? <button className="mx-5"><span className="text-green-500">Verified</span></button> : <><span className="text-red-500" ml-3nnn>Not Verified</span><button onClick={handleEmailVerification} style={buttonStyle}>resend mail verification</button></>}
         </div>
         <div style={{ display: "flex", alignItems: "center", margin: "10px 0px" }}>
           <span style={{ fontSize: "20px" }}>Phone Verification</span>
@@ -192,6 +192,7 @@ return (
                 </div>
               ) : (
                 <>
+                <span className="text-red-500 ml-3 ">  Not Verified</span>
                   <button onClick={handleResendOTP} style={buttonStyle}>Send OTP</button>
                   {showResendIcon && (
                     <button onClick={handleResendOTP} style={{ display: "flex", alignItems: "center" }}>
