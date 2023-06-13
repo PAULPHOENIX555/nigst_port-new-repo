@@ -211,7 +211,7 @@ return (
           )}
         </div>
         {message && (
-          <div style={{ marginTop: "10px", padding: "10px", backgroundColor: isSuccess ? "green" : "red", color: "white" }}>
+          <div style={{ marginTop: "10px", padding: "10px", backgroundColor: isSuccess ? "red" : "green", color: "white" }}>
             {message}
           </div>
         )}

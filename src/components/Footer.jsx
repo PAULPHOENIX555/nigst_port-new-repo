@@ -93,11 +93,10 @@ useEffect(() => {
         }
       })
       .catch(error => console.log(error));
-  }, 10000);
+  }, 5 * 60 * 1000); // 5 minutes in milliseconds
 
   return () => clearInterval(interval);
 }, [visitor]);
-
 
   return (
     <div className='mt-0'>
