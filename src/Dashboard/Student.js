@@ -50,9 +50,9 @@ function logout(){
         </div>
         <div>
             <ul className=' text-white cursor-pointer '>
-                {viewCourse ? <li className='p-3 ' style={{ background: "#1b3058",color:"#ffcb00" }} onClick={viewCourseFun}>Courses</li> : <li className='p-3 ' onClick={viewCourseFun}>Courses</li>}
-                {ViewEnrollCourse ? <li className='p-3 ' style={{ background: "#1b3058",color:"#ffcb00" }} onClick={viewEnrollCourseFun}>Enrolled Courses</li> : <li className='p-3 ' onClick={viewEnrollCourseFun}>Enrolled Course</li>}
-                {viewCancelledEnroll ? <li className='p-3 ' style={{ background: "#1b3058",color:"#ffcb00" }} onClick={viewCancelEnrollCourseFun}>Cancel Enrolled Courses</li> : <li className='p-3 ' onClick={viewCancelEnrollCourseFun}>Cancelled Enrolled Course</li>}
+                {viewCourse ? <li className='p-3 ' style={{ background: "#1050a2",color:"#ffcb00" }} onClick={viewCourseFun}>Courses</li> : <li className='p-3 ' onClick={viewCourseFun}>Courses</li>}
+                {ViewEnrollCourse ? <li className='p-3 ' style={{ background: "#1050a2",color:"#ffcb00" }} onClick={viewEnrollCourseFun}>Enrolled Courses</li> : <li className='p-3 ' onClick={viewEnrollCourseFun}>Enrolled Course</li>}
+                {viewCancelledEnroll ? <li className='p-3 ' style={{ background: "#1050a2",color:"#ffcb00" }} onClick={viewCancelEnrollCourseFun}>Cancel Enrolled Courses</li> : <li className='p-3 ' onClick={viewCancelEnrollCourseFun}>Cancelled Enrolled Course</li>}
             </ul>
         </div>
         </div>
@@ -61,7 +61,7 @@ function logout(){
                 <div>
                     <img src={Logo} alt="logo" className='header-logo-admin-panel'></img>
                 </div>
-                <button className='pt-3 pb-3 pl-10 pr-10 bg-[rgb(27,48,88)] text-white rounded-md' style={{ position: 'absolute', right: '20px' }} onClick={logout}>Logout</button>
+                <button className='pt-3 pb-3 pl-10 pr-10 bg-[#1050a2] text-white rounded-md' style={{ position: 'absolute', right: '20px' }} onClick={logout}>Logout</button>
             </header>
             <div className='min-h-max flex justify-center border-t-2 '>
                 { viewCourse ? <ViewCourses/> : ""}
