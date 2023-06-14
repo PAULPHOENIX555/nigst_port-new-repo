@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import './Tendertable.css'
+import {AiFillFilePdf} from 'react-icons/ai'
 
 function Tendertable() {
   const [showDiv1, setShowDiv1] = useState(true);
@@ -79,6 +80,59 @@ function Tendertable() {
       .catch(error => console.error(error));
   }, []);
 
+  const [currentTenderNumber, setCurrentTenderNumber] = useState("");
+  const showpdf = (tender_number) => {
+
+    // Make an API request using the tender number
+    fetch(`http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/view_archive/${tender_number}`)
+      .then(response => response.blob())
+      .then(data => {
+        // Create a blob URL from the response data
+        const pdfUrl = URL.createObjectURL(data);
+        // Open the PDF in a new window or tab
+        window.open(pdfUrl, '_blank');
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
+  };
+  
+  
+  const showTenderpdf = (tender_number) => {
+    // Make an API request using the tender number
+    fetch(`http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/vpdf/${tender_number}`)
+      .then(response => response.blob())
+      .then(data => {
+        // Create a blob URL from the response data
+        const pdfUrl = URL.createObjectURL(data);
+        // Open the PDF in a new window or tab
+        window.open(pdfUrl, '_blank');
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
+  };
+  
+  const corrigendumpdf = (corrigendumID) => {
+    // Make an API request using the tender number
+    fetch(`http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/corri_pdf/${corrigendumID}`)
+      .then(response => response.blob())
+      .then(data => {
+        // Create a blob URL from the response data
+        const pdfUrl = URL.createObjectURL(data);
+        // Open the PDF in a new window or tab
+        window.open(pdfUrl, '_blank');
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
+  };
+  
+  
+
   return (
     <div>
       <button className="togglebtn" onClick={handleButtonClick}>{buttonText}</button>
@@ -114,7 +168,7 @@ function Tendertable() {
         <td></td>
         <td>{tender.start_date}</td>
         <td>{tender.end_date}</td>
-        <td>{tender.corrigenda.length > 0 ? 'Yes' : 'No'}</td>
+        <td>{tender.corrigenda.length > 0 ? (<AiFillFilePdf color="red" onClick={() => showTenderpdf(tender.tender_ref_no)}/>):''}</td>
       </tr>
       {tender.corrigenda.map((corrigendum, index) => (
         <tr key={index}>
@@ -126,7 +180,12 @@ function Tendertable() {
           
           <td>{corrigendum.created_at}</td>
           <td></td>
-          <td></td>
+          
+          <td>{corrigendum.pdf && (
+            <div><AiFillFilePdf color="red" onClick={() => corrigendumpdf(corrigendum.corrigendumID)} /></div>
+          )
+          
+          }</td>
         </tr>
       ))}
     </React.Fragment>
@@ -170,7 +229,7 @@ function Tendertable() {
         <td></td>
         <td>{tender.startdate}</td>
         <td>{tender.enddate}</td>
-        <td>{tender.corrigendum.length > 0 ? 'Yes' : 'No'}</td>
+        <td>{tender.corrigendum.length > 0 ? (<AiFillFilePdf color="red" onClick={() => showpdf(tender.tender_ref_no)}/>):''}</td>
       </tr>
       {tender.corrigendum.map((corrigendum, index) => (
         <tr key={index}>
@@ -182,7 +241,11 @@ function Tendertable() {
           
           <td>{corrigendum.created_at}</td>
           <td></td>
-          <td></td>
+          <td>{corrigendum.pdf && (
+            <div><AiFillFilePdf color="red" onClick={() => corrigendumpdf(corrigendum.corrigendumID)} /></div>
+          )
+          
+          }</td>
         </tr>
       ))}
     </React.Fragment>
