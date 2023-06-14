@@ -88,80 +88,96 @@ useEffect(()=>{
   }
   return (
     <div>
-      <button className="togglebtn" onClick={handleButtonClick}>{buttonText}</button>
-      {showDiv1 && <div>
-        <div id="postedNotices" style={{ height: "600px", overflowY: "scroll" }}>
-          <input type="text" id="SearchInput" placeholder="Search Announcements" value={searchDate1} onChange={handleInputChange1} />
-
-          <table>
-            <thead>
-              <tr>
-                <th colSpan="4" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>Latest Announcements</th>
-              </tr>
-              <tr>
-              <th>S.No</th>
-              <th>Date</th>
-            <th>Title</th>
-            <th>Description</th>
-              </tr>
-            </thead>
-
-            <tbody className="main-wrapper" id="Names">
-           
-          {
-            viewAnn.map((data,index)=>{
-              return (
+    <button className="togglebtn" onClick={handleButtonClick}>{buttonText}</button>
+    {viewAnn && viewAnn.length ? (
+      <div>
+        {showDiv1 && (
+          <div id="postedNotices" style={{ height: "600px", overflowY: "scroll" }}>
+            <input
+              type="text"
+              id="SearchInput"
+              placeholder="Search Announcements"
+              value={searchDate1}
+              onChange={handleInputChange1}
+            />
+  
+            <table>
+              <thead>
                 <tr>
-                <td>{index+1}</td>
-                <td>{data.posteddate}</td>
-                <td>{data.title}</td>
-                <td>{data.description}</td>
-              </tr>
-              )
-            })
-          }
-          
-            </tbody>
-          </table>
-        </div></div>}
-      {showDiv2 && <div>
-        <div id="postedNotices" style={{ height: "600px", overflowY: "scroll" }}>
-          <input type="text" id="searchInput" placeholder="Enter date YYYY-MM-DD" value={searchDate2} onChange={handleInputChange2} />
-
-          <table>
-            <thead>
-              <tr>
-                <th colspan="5" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>Archived Announcements</th>
-              </tr>
-              <tr>
-            <th>S.No</th>  
-            <th>Date</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>PDF</th>
-              </tr>
-            </thead>
-
-            <tbody className="main-wrapper" id="names">
-          
-           {
-            viewAnnArchive.map((data,index)=>{
-              return(
+                  <th colSpan="4" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>
+                    Latest Announcements
+                  </th>
+                </tr>
                 <tr>
-                  <td>{index+1}</td>
-                <td>{data.title}</td>
-                <td>{data.postedat}</td>
-                <td>{data.description}</td>
-                <td><AiFillFilePdf style={{fontSize:"30px",color:"red"}}/></td>
-              </tr>
-              )
-            })
-           }
-            </tbody>
-          </table>
-        </div>
-        </div>}
-    </div>
+                  <th>S.No</th>
+                  <th>Date</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+  
+              <tbody className="main-wrapper" id="Names">
+                {viewAnn.map((data, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{data.posteddate}</td>
+                    <td>{data.title}</td>
+                    <td>{data.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {showDiv2 && (
+          <div id="postedNotices" style={{ height: "600px", overflowY: "scroll" }}>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Enter date YYYY-MM-DD"
+              value={searchDate2}
+              onChange={handleInputChange2}
+            />
+  
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan="5" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>
+                    Archived Announcements
+                  </th>
+                </tr>
+                <tr>
+                  <th>S.No</th>
+                  <th>Date</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>PDF</th>
+                </tr>
+              </thead>
+  
+              <tbody className="main-wrapper" id="names">
+                {viewAnnArchive.map((data, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{data.title}</td>
+                    <td>{data.postedat}</td>
+                    <td>{data.description}</td>
+                    <td>
+                      <AiFillFilePdf style={{ fontSize: "30px", color: "red" }} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    ) : (
+      <div>Nothing to show</div>
+    )}
+  </div>
+  
+  
   );
 }
 
