@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import {ImPlay3} from 'react-icons/im'
@@ -100,7 +100,7 @@ const images = [
   {
     
     category: 'Science Day',
-    imageSrc: require('./NIGST Gallery/Science Day/DSC_0163.'),
+    imageSrc: require('./NIGST Gallery/Science Day/DSC_0163.png'),
   },
   {
 
