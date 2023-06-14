@@ -168,7 +168,7 @@ function Tendertable() {
         <td></td>
         <td>{tender.start_date}</td>
         <td>{tender.end_date}</td>
-        <td>{tender.corrigenda.length > 0 ? (<AiFillFilePdf color="red" onClick={() => showTenderpdf(tender.tender_ref_no)}/>):''}</td>
+        <td>{tender.corrigenda.length > 0 ? (<AiFillFilePdf className="mx-auto" color="red" onClick={() => showTenderpdf(tender.tender_ref_no)}/>):''}</td>
       </tr>
       {tender.corrigenda.map((corrigendum, index) => (
         <tr key={index}>
@@ -182,7 +182,7 @@ function Tendertable() {
           <td></td>
           
           <td>{corrigendum.pdf && (
-            <div><AiFillFilePdf color="red" onClick={() => corrigendumpdf(corrigendum.corrigendumID)} /></div>
+            <div><AiFillFilePdf color="red" className="mx-auto" onClick={() => corrigendumpdf(corrigendum.corrigendumID)} /></div>
           )
           
           }</td>
@@ -229,7 +229,7 @@ function Tendertable() {
         <td></td>
         <td>{tender.startdate}</td>
         <td>{tender.enddate}</td>
-        <td>{tender.corrigendum.length > 0 ? (<AiFillFilePdf color="red" onClick={() => showpdf(tender.tender_ref_no)}/>):''}</td>
+        <td >{tender.corrigendum.length > 0 ? (<AiFillFilePdf className="mx-auto" color="red" onClick={() => showpdf(tender.tender_ref_no)}/>):''}</td>
       </tr>
       {tender.corrigendum.map((corrigendum, index) => (
         <tr key={index}>
@@ -242,7 +242,7 @@ function Tendertable() {
           <td>{corrigendum.created_at}</td>
           <td></td>
           <td>{corrigendum.pdf && (
-            <div><AiFillFilePdf color="red" onClick={() => corrigendumpdf(corrigendum.corrigendumID)} /></div>
+            <div><AiFillFilePdf  className="mx-auto" color="red" onClick={() => corrigendumpdf(corrigendum.corrigendumID)} /></div>
           )
           
           }</td>
