@@ -129,8 +129,98 @@ const images = [
   },
   {
     
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/13.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/15.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/18.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/20.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/22.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/23.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/24.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/27.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/28.jpeg'),
+  },
+  {
+    
+    category: 'Minister Visit Day',
+    imageSrc: require('./NIGST Gallery/Minister visit/31.jpeg'),
+  },
+  {
+    
     category: 'NIGST AP Govt. Emp. Training',
     imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1426.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1427.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1428.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1429.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1430.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1431.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1432.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1433.png'),
+  },
+  {
+    
+    category: 'NIGST AP Govt. Emp. Training',
+    imageSrc: require('./NIGST Gallery/NIGST AP Govt. Emp. Training/Snapshot_1434.png'),
   },
   {
     
@@ -139,13 +229,153 @@ const images = [
   },
   {
     
+    category: 'NIGST Forest Officer Training',
+    imageSrc: require('./NIGST Gallery/NIGST Forest Officer Training/Snapshot_1420.png'),
+  },
+  {
+    
+    category: 'NIGST Forest Officer Training',
+    imageSrc: require('./NIGST Gallery/NIGST Forest Officer Training/Snapshot_1422.png'),
+  },
+  {
+    
+    category: 'NIGST Forest Officer Training',
+    imageSrc: require('./NIGST Gallery/NIGST Forest Officer Training/Snapshot_1423.png'),
+  },
+  {
+    
+    category: 'NIGST Forest Officer Training',
+    imageSrc: require('./NIGST Gallery/NIGST Forest Officer Training/Snapshot_1424.png'),
+  },
+  {
+    
+    category: 'NIGST Forest Officer Training',
+    imageSrc: require('./NIGST Gallery/NIGST Forest Officer Training/Snapshot_1425.png'),
+  },
+  {
+    
     category: 'NIGST Republic Day 2023',
     imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1435.png'),
   },
   {
     
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1436.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1437.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1438.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1439.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1440.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1441.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1443.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1444.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1445.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1446.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1447.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1448.png'),
+  },
+  {
+    
+    category: 'NIGST Republic Day 2023',
+    imageSrc: require('./NIGST Gallery/NIGST Republic Day 2023/Snapshot_1449.png'),
+  },
+  {
+    
     category: 'NIGST Special Course',
     imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1450.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1451.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1452.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1453.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1454.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1455.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1456.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1457.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1458.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1459.png'),
+  },
+  {
+    
+    category: 'NIGST Special Course',
+    imageSrc: require('./NIGST Gallery/NIGST Special Course/Snapshot_1460.png'),
   },
   
 ];
