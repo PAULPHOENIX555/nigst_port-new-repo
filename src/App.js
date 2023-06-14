@@ -50,6 +50,7 @@ import VerificationPage from './Dashboard/VerificationPage';
 import ResetPassword from './components/forms/ResetPassword';
 import CourseCalender from './components/CourseCalender';
 import { useEffect, useState } from 'react';
+import ImageGallery from './components/Gallery/gallery';
 
 function App() {
   
@@ -107,7 +108,7 @@ function App() {
             <Route path='/Contactus' element={<ContactForm />} />
             <Route path='/components/forms/forgetpassword' element={<ForgotPasswordForm />} />
             <Route path='/Tables/Announcementtable' element={<Announcementtable />} />
-            <Route path='/gallery' element={<Carousel />} />
+            <Route path='/gallery' element={<ImageGallery/>} />
             <Route path='/components/geospatial' element={<Geospatialpolicy />} />
             <Route path='/components/SOI project/soiprojects' element={<SimpleSlider />} />
             <Route path='/components/rajbhasha/rajbhasha' element={<RajBhasha />} />
