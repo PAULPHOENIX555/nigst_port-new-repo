@@ -93,7 +93,7 @@ useEffect(() => {
         }
       })
       .catch(error => console.log(error));
-  }, 5 * 60 * 1000); // 5 minutes in milliseconds
+  }, 1000); // 5 minutes in milliseconds
 
   return () => clearInterval(interval);
 }, [visitor]);
