@@ -116,7 +116,7 @@ function Tendertable() {
 
   const corrigendumpdf = (corrigendumID) => {
     // Make an API request using the tender number
-    fetch(`http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/corri_pdf/${corrigendumID}`)
+    fetch(`http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/ar_corri_pdf/${corrigendumID}`)
       .then((response) => response.blob())
       .then((data) => {
         // Create a blob URL from the response data

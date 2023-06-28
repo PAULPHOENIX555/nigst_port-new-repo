@@ -83,28 +83,19 @@ const Navbar = () => {
   const handleAnnouncementClick = () => {
     setShowAnnouncement(!showAnnouncement);
   };
-  const [activeIndex, setActiveIndex] = useState(0);
-  const announcements = [
-    {
-      date: 'Aug 22, 2022',
-      text: 'Call for Proposal: Announcement of Opportunity (AO) for Capacity Building in Space Based Disaster Management Support'
-    },
-    {
-      date: 'Sep 22, 2022',
-      text: 'Call for Proposal: Announcement of Opportunity (AO) for Capacity Building in Space Based Disaster Management Support'
-    },
-    {
-      date: 'Sep 23, 2022',
-      text: 'Call for Proposal: Announcement of Opportunity (AO) for Capacity Building in Space Based Disaster Management Support'
-    },
-  ];
-  const handlePrevClick = () => {
-    setActiveIndex(activeIndex === 0 ? announcements.length - 1 : activeIndex - 1);
-  };
-  const handleNextClick = () => {
-    setActiveIndex(activeIndex === announcements.length - 1 ? 0 : activeIndex + 1);
-  };
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [announcements, setAnnouncements] = useState([]);
+  const announcementsPerPage = 2;
+
+  const handlePrevClick = () => {
+    setActiveIndex((prevIndex) => (prevIndex - announcementsPerPage >= 0 ? prevIndex - announcementsPerPage : 0));
+  };
+  
+  const handleNextClick = () => {
+    const maxIndex = Math.max(0, announcements.length - announcementsPerPage);
+    setActiveIndex((prevIndex) => (prevIndex + announcementsPerPage <= maxIndex ? prevIndex + announcementsPerPage : maxIndex));
+  };
 
   const [showButton, setShowButton] = useState(true);
 
@@ -121,16 +112,28 @@ const Navbar = () => {
     };
   }, []);
 
+useEffect(() => {
+  const fetchAnnouncements = async () => {
+    try {
+      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/webannouncement');
+      const data = await response.json();
+      setAnnouncements(data.announcement);
+    } catch (error) {
+      console.error('Error fetching announcements:', error);
+    }
+  };
+
+  fetchAnnouncements();
+
+  const intervalId = setInterval(() => {
+    setActiveIndex((activeIndex + 1) % announcements.length);
+  }, 3000);
+
+  return () => clearInterval(intervalId);
+}, []);
 
 
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setActiveIndex((activeIndex + 1) % announcements.length);
-    }, 3000);
-
-    return () => clearInterval(intervalId);
-  }, [activeIndex, announcements.length]);
 
 
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
@@ -346,50 +349,60 @@ const Navbar = () => {
           {showButton && (
             <button className="block md:py-2 ml-0 mt-3 lg:inline-block lg:mt-0 text-white hover:text-yellow-300 mr-4  text-base  float-right absolute top-0 right-0"
               onClick={handleAnnouncementClick}>Announcements</button>)}
-          {showAnnouncement && (
-            <div>
-              <div className="announcement-container" >
-                <div id="ann-close-icon">
-                  <button onClick={handleAnnouncementClick} > <FaTimes size={20} /></button>
-                </div>
-                <Link to="/Tables/Announcementtable">
-                  <h3 className='hover:text-[#ffcb00] text-lg py-1 text-white'>Announcement</h3>
-                </Link>
-                <div className="Acarousel-container">
-                  <div className="Acarousel-wrapper">
-                    {announcements.reduce((accumulator, announcement, index) => {
-                      if (index % 2 === 0) {
-                        accumulator.push(
-                          <div key={index} className={`Acarousel-card ${activeIndex === index ? 'active' : ''}`}>
-                            <h4>Posted on: {announcement.date}</h4>
-                            <p><span>Call for Proposal:</span> {announcement.text}</p>
-                            {announcements[index + 1] && (
-                              <>
-                                <h4>Posted on: {announcements[index + 1].date}</h4>
-                                <p><span>Call for Proposal:</span> {announcements[index + 1].text}</p>
-                              </>
-                            )}
-                          </div>
-                        );
-                      }
-                      return accumulator;
-                    }, [])}
-                  </div>
-                  <div className="Acarousel-indicators">
-                    {announcements.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`Acarousel-indicator ${activeIndex === index ? 'active' : ''}`}
-                        onClick={() => setActiveIndex(index)}
-                      ></div>
-                    ))}
-                  </div>
-                  <button className="prev-btn" onClick={handlePrevClick}>❮</button>
-                  <button className="next-btn" onClick={handleNextClick}>❯</button>
-                </div>
-              </div>
+       {showAnnouncement && announcements.length > 0 && (
+      <div>
+        <div className="announcement-container">
+          <div id="ann-close-icon">
+            <button onClick={handleAnnouncementClick}>
+              <FaTimes size={20} />
+            </button>
+          </div>
+          <Link to="/Tables/Announcementtable">
+            <h3 className="hover:text-[#ffcb00] text-lg py-1 text-white">Announcement</h3>
+          </Link>
+          <div className="Acarousel-container">
+            <div className="Acarousel-wrapper">
+              {announcements.reduce((accumulator, announcement, index) => {
+                if (index % 2 === 0) {
+                  accumulator.push(
+                    <div key={index} className={`Acarousel-card ${activeIndex === index ? 'active' : ''}`}>
+                      <h4>Posted on: {announcement.posteddate}</h4>
+                      <p>
+                        <span>Call for Proposal:</span> {announcement.description}
+                      </p>
+                      {announcements[index + 1] && (
+                        <>
+                          <h4>Posted on: {announcements[index + 1].posteddate}</h4>
+                          <p>
+                            <span>Call for Proposal:</span> {announcements[index + 1].description}
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  );
+                }
+                return accumulator;
+              }, [])}
             </div>
-          )}
+            <div className="Acarousel-indicators">
+              {announcements.map((_, index) => (
+                <div
+                  key={index}
+                  className={`Acarousel-indicator ${activeIndex === index ? 'active' : ''}`}
+                  onClick={() => setActiveIndex(index)}
+                ></div>
+              ))}
+            </div>
+            <button className="prev-btn" onClick={handlePrevClick}>
+              ❮
+            </button>
+            <button className="next-btn" onClick={handleNextClick}>
+              ❯
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
 
         </div>
         <ul className={`block md:hidden bg-[#1050A2] py-0 ml-0   
@@ -423,65 +436,4 @@ const Navbar = () => {
     </nav>
   )
 }
-
-
-
-// function DropdownMenu() {
-//   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-//   const [timeoutId, setTimeoutId] = useState(null);
-
-//   function handleMouseEnter() {
-//     setIsSubmenuOpen(true);
-//     clearTimeout(timeoutId);
-//   }
-
-//   function handleMouseLeave() {
-//     const newTimeoutId = setTimeout(() => setIsSubmenuOpen(false), 500);
-//     setTimeoutId(newTimeoutId);
-//   }
-
-//   return (
-//     <div className="relative">
-//       <button
-//         className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
-//         onMouseEnter={handleMouseEnter}
-//         onMouseLeave={handleMouseLeave}
-//       >
-//         Dropdown
-//       </button>
-//       {isSubmenuOpen && (
-//         <div
-//           className="absolute z-10 bg-gray-800 text-white py-2 mt-2 w-72 rounded-md shadow-lg"
-//           onMouseEnter={handleMouseEnter}
-//           onMouseLeave={handleMouseLeave}
-//         >
-//           <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-700">Option 1</a>
-//           <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-700">Option 2</a>
-//           <div className="relative">
-//             <button
-//               className="w-full text-left px-4 py-2 text-sm hover:bg-gray-700"
-//               onMouseEnter={handleMouseEnter}
-//               onMouseLeave={handleMouseLeave}
-//             >
-//               Submenu
-//             </button>
-//             {isSubmenuOpen && (
-//               <div
-//                 className="absolute z-10 left-full top-0 bg-gray-800 text-white w-full rounded-md shadow-lg"
-//                 onMouseEnter={handleMouseEnter}
-//                 onMouseLeave={handleMouseLeave}
-//               >
-//                 <a href="#" className="inline-block px-4 py-2 text-sm hover:bg-gray-700">Submenu Option 1aaaaaaaaaaaaaa</a>
-//                 <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-700">Submenu Option 2aaaaaaaaaaaaaaa</a>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-
-
 export default Navbar
