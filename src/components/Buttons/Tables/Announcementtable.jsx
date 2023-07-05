@@ -126,7 +126,7 @@ function Announcementtable() {
                         </td>
                       ) : (
                         <td className={data.url === '' ? '' : 'underline'}>
-                          <a href={data.url} target="_blank">
+                          <a href={`http://${data.url}`} target="_blank" rel="noopener noreferrer">
                             {data.title}
                           </a>
                         </td>
@@ -138,7 +138,7 @@ function Announcementtable() {
                         </td>
                       ) : (
                         <td className={data.url === '' ? '' : 'underline'}>
-                          <a href={data.url} target="_blank">
+                          <a href={`http://${data.url}`} target="_blank" rel="noopener noreferrer">
                             {data.description}
                           </a>
                         </td>
@@ -186,7 +186,7 @@ function Announcementtable() {
                         </td>
                       ) : (
                         <td className={data.url === '' ? '' : 'underline'}>
-                          <a href={data.url} target="_blank">
+                          <a href={`http://${data.url}`} target="_blank" rel="noopener noreferrer">
                             {data.title}
                           </a>
                         </td>
@@ -198,7 +198,7 @@ function Announcementtable() {
                         </td>
                       ) : (
                         <td className={data.url === '' ? '' : 'underline'}>
-                          <a href={data.url} target="_blank">
+                          <a href={`http://${data.url}`} target="_blank" rel="noopener noreferrer">
                             {data.description}
                           </a>
                         </td>

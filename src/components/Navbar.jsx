@@ -349,60 +349,65 @@ useEffect(() => {
           {showButton && (
             <button className="block md:py-2 ml-0 mt-3 lg:inline-block lg:mt-0 text-white hover:text-yellow-300 mr-4  text-base  float-right absolute top-0 right-0"
               onClick={handleAnnouncementClick}>Announcements</button>)}
-       {showAnnouncement && announcements.length > 0 && (
-      <div>
-        <div className="announcement-container">
-          <div id="ann-close-icon">
-            <button onClick={handleAnnouncementClick}>
-              <FaTimes size={20} />
-            </button>
-          </div>
-          <Link to="/Tables/Announcementtable">
-            <h3 className="hover:text-[#ffcb00] text-lg py-1 text-white">Announcement</h3>
-          </Link>
-          <div className="Acarousel-container">
-            <div className="Acarousel-wrapper">
-              {announcements.reduce((accumulator, announcement, index) => {
-                if (index % 2 === 0) {
-                  accumulator.push(
-                    <div key={index} className={`Acarousel-card ${activeIndex === index ? 'active' : ''}`}>
-                      <h4>Posted on: {announcement.posteddate}</h4>
-                      <p>
-                        <span>Call for Proposal:</span> {announcement.description}
-                      </p>
-                      {announcements[index + 1] && (
-                        <>
-                          <h4>Posted on: {announcements[index + 1].posteddate}</h4>
-                          <p>
-                            <span>Call for Proposal:</span> {announcements[index + 1].description}
-                          </p>
-                        </>
-                      )}
-                    </div>
-                  );
-                }
-                return accumulator;
-              }, [])}
-            </div>
-            <div className="Acarousel-indicators">
-              {announcements.map((_, index) => (
-                <div
-                  key={index}
-                  className={`Acarousel-indicator ${activeIndex === index ? 'active' : ''}`}
-                  onClick={() => setActiveIndex(index)}
-                ></div>
-              ))}
-            </div>
-            <button className="prev-btn" onClick={handlePrevClick}>
-              ❮
-            </button>
-            <button className="next-btn" onClick={handleNextClick}>
-              ❯
-            </button>
-          </div>
-        </div>
+     {showAnnouncement && announcements.length > 0 ? (
+  <div>
+    <div className="announcement-container">
+      <div id="ann-close-icon">
+        <button onClick={handleAnnouncementClick}>
+          <FaTimes size={20} />
+        </button>
       </div>
-    )}
+      <Link to="/Tables/Announcementtable">
+        <h3 className="hover:text-[#ffcb00] text-lg py-1 text-white">Announcement</h3>
+      </Link>
+      <div className="Acarousel-container">
+        <div className="Acarousel-wrapper">
+          {announcements.reduce((accumulator, announcement, index) => {
+            if (index % 2 === 0) {
+              accumulator.push(
+                <div key={index} className={`Acarousel-card ${activeIndex === index ? 'active' : ''}`}>
+                  <h4>Posted on: {announcement.posteddate}</h4>
+                  <p>
+                    <span>Call for Proposal:</span> {announcement.description}
+                  </p>
+                  {announcements[index + 1] && (
+                    <>
+                      <h4>Posted on: {announcements[index + 1].posteddate}</h4>
+                      <p>
+                        <span>Call for Proposal:</span> {announcements[index + 1].description}
+                      </p>
+                    </>
+                  )}
+                </div>
+              );
+            }
+            return accumulator;
+          }, [])}
+        </div>
+        <div className="Acarousel-indicators">
+          {announcements.map((_, index) => (
+            <div
+              key={index}
+              className={`Acarousel-indicator ${activeIndex === index ? 'active' : ''}`}
+              onClick={() => setActiveIndex(index)}
+            ></div>
+          ))}
+        </div>
+        <button className="prev-btn" onClick={handlePrevClick}>
+          ❮
+        </button>
+        <button className="next-btn" onClick={handleNextClick}>
+          ❯
+        </button>
+      </div>
+    </div>
+  </div>
+) : (
+  <div>
+    <p>Nothing to show.</p>
+  </div>
+)}
+
 
         </div>
         <ul className={`block md:hidden bg-[#1050A2] py-0 ml-0   
