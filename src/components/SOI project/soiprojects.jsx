@@ -3,19 +3,22 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import Slider from 'react-slick'
 import { useState } from 'react'
-import img1 from './soiproject/01.jpg';
-import img2 from './soiproject/coastal.jpg';
-import img3 from './soiproject/nhp.jpg';
-import img4 from './soiproject/vertical-datum.jpg';
-import img5 from './soiproject/web-gis.jpg';
+// import img1 from './soiproject/01.jpg';
+// import img2 from './soiproject/coastal.jpg';
+// import img3 from './soiproject/nhp.jpg';
+// import img4 from './soiproject/vertical-datum.jpg';
+// import img5 from './soiproject/web-gis.jpg';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 
 
 function SCarousel() {
 
-  const [sliderRef, setSliderRef] = useState(null)
+  const [sliderRef, setSliderRef] = useState(null);
+  const [hotelCards,setHotelCards] = useState([]);
 
   const sliderSettings = {
   arrows: true,
@@ -50,45 +53,53 @@ function SCarousel() {
   ],
 };
 
+  useEffect(()=>{
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_project";
+    axios.get(url).then((res)=>{
+      setHotelCards(res.data.data);
+      console.log(hotelCards)
+    }).catch((error)=>{
+      console.log(error);
+    })
+  },[]);  
   
-  
-   const hotelCards = [
-    {
-      imageSrc: img1,
-      title: '',
-      description: 'Lorem ipsum dolor sit amet, consectur dolori',
-      pricingText: 'SVAMITA',
-      features: [''],
-    },
-    {
-      imageSrc: img2,
-      title: '',
-      description: 'Lorem ipsum dolor sit amet, consectur dolori',
-      pricingText: 'Integrated Costal Hazard Zone Mapping',
-      features: [''],
-    },
-    {
-      imageSrc: img3,
-      title: '',
-      description: 'Lorem ipsum dolor sit amet, consectur dolori',
-      pricingText: 'National Hydrology Project',
-      features: [''],
-    },
-    {
-      imageSrc: img4,
-      title: '',
-      description: 'Lorem ipsum dolor sit amet, consectur dolori',
-      pricingText: 'Redefinition of Indian Vertical Application',
-      features: [''],
-    },
-    {
-      imageSrc: img5,
-      title: '',
-      description: 'Lorem ipsum dolor sit amet, consectur dolori',
-      pricingText: 'Web Gis based Governance Application',
-      features: [''],
-    },
-  ];
+  //  const hotelCards = [
+  //   {
+  //     imageSrc: img1,
+  //     title: '',
+  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
+  //     pricingText: 'SVAMITA',
+  //     features: [''],
+  //   },
+  //   {
+  //     imageSrc: img2,
+  //     title: '',
+  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
+  //     pricingText: 'Integrated Costal Hazard Zone Mapping',
+  //     features: [''],
+  //   },
+  //   {
+  //     imageSrc: img3,
+  //     title: '',
+  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
+  //     pricingText: 'National Hydrology Project',
+  //     features: [''],
+  //   },
+  //   {
+  //     imageSrc: img4,
+  //     title: '',
+  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
+  //     pricingText: 'Redefinition of Indian Vertical Application',
+  //     features: [''],
+  //   },
+  //   {
+  //     imageSrc: img5,
+  //     title: '',
+  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
+  //     pricingText: 'Web Gis based Governance Application',
+  //     features: [''],
+  //   },
+  // ];
 
   return (
     <div className='content p-[25px] md:p-[30] m-auto xl:p-8 w-full'>
@@ -102,17 +113,18 @@ function SCarousel() {
       </button>
     </div>
     <Slider className="mt-4 mx-0 grid gap-0 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 " ref={setSliderRef} {...sliderSettings}>
-      {hotelCards.map((card, index) => (
-        <div key={index} className="p-4 bg-white shadow-md h-full w flex flex-col slider">
-          <h2 className="text-2xl font-bold mb-2">{card.title}</h2>
-          <img alt={card.title} src={card.imageSrc} className="w-full object-cover mb-4 rounded-lg" />
-          <p className="text-gray-700 mb-4 flex-grow">{card.description}</p>
-          <div className="bg-[#1050a2] hover:bg-[#ffcb00] text-white font-bold w-full  py-2 px-4 rounded-sm inline-block mb-4 flex justify-center items-center">{card.pricingText}</div>
-
-          
-          
-        </div>
-      ))}
+      {
+        hotelCards.map((card,index)=>{
+          return (
+            <div key={index} className="p-4 bg-white shadow-md h-full w flex  slider">
+            {/* <h2 className="text-2xl font-bold mb-2">{card.name}</h2> */}
+            <img alt={card.name} src={card.url} className="w-full object-cover mb-4 rounded-lg" />
+            <p className="text-gray-700 mb-4 flex-grow">{card.p_description}</p>
+            <div className="bg-[#1050a2] hover:bg-[#ffcb00] text-white font-bold w-full  py-2 px-4 rounded-sm inline-block mb-4 flex justify-center items-center">{card.name}</div> 
+          </div>
+          )
+        })
+      }
     </Slider>
   </div>
   

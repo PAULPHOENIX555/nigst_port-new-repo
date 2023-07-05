@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.20438c6b.css",
-    "main.js": "/static/js/main.1fde9e69.js",
+    "main.js": "/static/js/main.71affbd9.js",
     "static/media/DSC_0405.JPG": "/static/media/DSC_0405.eebc7b2ae957515b7045.JPG",
     "static/media/DSC_0052.JPG": "/static/media/DSC_0052.23d1c7ce0ff72de00537.JPG",
     "static/media/DSC_0403.JPG": "/static/media/DSC_0403.a29a9f517fac23003d1e.JPG",
@@ -84,28 +84,23 @@
     "static/media/IMG-20230225-WA0044.jpg": "/static/media/IMG-20230225-WA0044.ce735d20243e51d64e09.jpg",
     "static/media/IMG-20230225-WA0059.jpg": "/static/media/IMG-20230225-WA0059.3c4b7701405a66585e52.jpg",
     "static/media/18.jpeg": "/static/media/18.a2b1fa5c7b6d179f1e35.jpeg",
-    "static/media/web-gis.jpg": "/static/media/web-gis.fbbb23e7f28feac68ac8.jpg",
     "static/media/S K Sinha Head Faculty - C,DM&GIS.JPG": "/static/media/S K Sinha Head Faculty - C,DM&GIS.cb48b4c2868f0cbda5df.JPG",
     "static/media/10.jpeg": "/static/media/10.61c0c5212b95d2374915.jpeg",
     "static/media/IMG-20230225-WA0011.jpg": "/static/media/IMG-20230225-WA0011.dd4820452431a0b52ee0.jpg",
     "static/media/NIGST Org Chart.svg": "/static/media/NIGST Org Chart.8467b4cbbda1d89629477f6ff1bc0615.svg",
     "static/media/23.jpeg": "/static/media/23.7f16530886e779b3c22e.jpeg",
-    "static/media/coastal.jpg": "/static/media/coastal.f8f44b9eb6b03b945099.jpg",
     "static/media/22.jpeg": "/static/media/22.5daa5581613c1b09c6e6.jpeg",
     "static/media/31.jpeg": "/static/media/31.051207c513c0a1db7e81.jpeg",
     "static/media/20.jpeg": "/static/media/20.51c57da5a3a858f6bcb7.jpeg",
     "static/media/27.jpeg": "/static/media/27.571c3cdf364c9e1f7496.jpeg",
     "static/media/IMG-20230225-WA0051.jpg": "/static/media/IMG-20230225-WA0051.571c3cdf364c9e1f7496.jpg",
     "static/media/28.jpeg": "/static/media/28.44ba305399b5cf6bdeb0.jpeg",
-    "static/media/01.jpg": "/static/media/01.ce5082ba47746045a54f.jpg",
-    "static/media/nhp.jpg": "/static/media/nhp.1da4494bf5c371010f69.jpg",
     "static/media/24.jpeg": "/static/media/24.d4fed40de42b5b90959d.jpeg",
     "static/media/Website Logo NIGST Small.png": "/static/media/Website Logo NIGST Small.351b2ecb061f809ac9b8.png",
     "static/media/Image No. 7.jpg": "/static/media/Image No. 7.ca98a4f6294e49c51cfd.jpg",
     "static/media/15.jpeg": "/static/media/15.752ab6e76747a25ad489.jpeg",
     "static/media/13.jpeg": "/static/media/13.e8b482b4f00a76f60a06.jpeg",
     "static/media/sunil.png": "/static/media/sunil.91e2111574116dd6b8cf.png",
-    "static/media/vertical-datum.jpg": "/static/media/vertical-datum.a6ce9170f1b86c029bb9.jpg",
     "static/media/bharat lohani.png": "/static/media/bharat lohani.6163ae97105a94dfa3ac.png",
     "static/media/varuna.png": "/static/media/varuna.2d1dd16ab7f54ae190b4.png",
     "static/media/rama chandra.png": "/static/media/rama chandra.152cae706286015b6118.png",
@@ -131,10 +126,10 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "main.20438c6b.css.map": "/static/css/main.20438c6b.css.map",
-    "main.1fde9e69.js.map": "/static/js/main.1fde9e69.js.map"
+    "main.71affbd9.js.map": "/static/js/main.71affbd9.js.map"
   },
   "entrypoints": [
     "static/css/main.20438c6b.css",
-    "static/js/main.1fde9e69.js"
+    "static/js/main.71affbd9.js"
   ]
 }

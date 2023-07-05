@@ -11,19 +11,28 @@ function mankibat() {
   window.open = ('https://www.mygov.in/group-issue/inviting-ideas-celebrate-100th-episode-mann-ki-baat/?target=inapp&type=group_issue&nid=336471','_blank');
 }
 
-const Banner = [banner1, banner2]
+// const Banner = [banner1, banner2]
 
 const Home = () => {
   const [images, setImages] = useState([])
+  const [banner,setBanner] = useState([]);
   useEffect(() => {
     async function fetchBannerImages() {
       const response = await axios.get('/api/banner_images');
       setImages(response.data);
     }
     fetchBannerImages();
+    viewBannerImage();
   }, [])
 
-
+function viewBannerImage(){
+  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_banner/";
+  axios.get(url).then((res)=>{
+    setBanner(res.data.banners)
+  }).catch((error)=>{
+    console.log(error)
+  })
+}
   const [sliderRef, setSliderRef] = useState(null)
 
   const sliderSettings = {
@@ -64,8 +73,8 @@ const Home = () => {
       <div className=''>
         <Carousel />
         <div className='flex flex-col md:flex-row lg:flex-row xl:row 2xl:flex-row ' >
-          {Banner.map((image, index) => (
-            <img  src={image} alt="banner" className=' w-full md:w-[50%] object-cover  ' />
+          {banner.map((image, index) => (
+            <a href={image.url}  className=' w-full md:w-[50%] object-cover  ' target='_blank' rel="noreferrer"><img  src={image.signedUrl} alt={image.alt} /></a>
           ))} 
         </div>
       </div>
