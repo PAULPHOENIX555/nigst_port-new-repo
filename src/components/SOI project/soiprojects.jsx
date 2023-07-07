@@ -118,9 +118,9 @@ function SCarousel() {
           return (
             <div key={index} className="p-4 bg-white shadow-md h-full w flex  slider">
             {/* <h2 className="text-2xl font-bold mb-2">{card.name}</h2> */}
-            <img alt={card.name} src={card.url} className="w-full object-cover mb-4 rounded-lg" />
+            <img alt={card.name} src={card.Purl} className="w-full object-cover mb-4 rounded-lg h-24" />
             <p className="text-gray-700 mb-4 flex-grow">{card.p_description}</p>
-            <div className="bg-[#1050a2] hover:bg-[#ffcb00] text-white font-bold w-full  py-2 px-4 rounded-sm inline-block mb-4 flex justify-center items-center">{card.name}</div> 
+            <div className="bg-[#1050a2] hover:bg-[#ffcb00] text-white font-bold w-full  py-2 px-4 rounded-sm inline-block mb-4 flex justify-center items-center"><a href={card.url} target="_blank">{card.name}</a></div> 
           </div>
           )
         })

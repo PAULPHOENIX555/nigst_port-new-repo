@@ -1,9 +1,12 @@
+import { Alert } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import { BsFillPlusCircleFill } from 'react-icons/bs';
 export default function ViewCourses() {
     const [viewData , setViewData] = useState([]);
     const [userData,setUserData] = useState({})
+    const [errorAlert,setErrorAlert] = useState(false);
+    const [successAlert,setSuccessAlert] = useState(false);
 
     useEffect(()=>{
     let userData = JSON.parse(localStorage.getItem("user"));
@@ -29,18 +32,27 @@ export default function ViewCourses() {
         scheduleId:`${e.target.getAttribute("scheduling_id")}`
       }
       axios.post(url,data).then((res)=>{
-        console.log(res)
+        setSuccessAlert(true);
       }).catch((error)=>{
-        console.log(error)
+        console.log(error.response.data.error)
+        if(error.response.data.error === "Course does not exist or is not currently active"){
+          setErrorAlert(true);
+          setTimeout(() => {
+            setErrorAlert(false);
+          }, 5000);
+        }
       })
     }
 
 
   return (
-    <div >
-      <div className='user-details-wrapper mt-5'>
-    <table>
-      <tbody>
+    <div>
+      {errorAlert && <div style={{textAlign:"center",width:"20%",margin:"auto"}}><Alert severity='error' style={{marginTop:"20px"}}>Course does not exist or is not currently active</Alert></div>}
+      {successAlert && <div style={{textAlign:"center",width:"20%",margin:"auto"}}><Alert severity='success' style={{marginTop:"20px"}}>Course Enroll Successfully</Alert></div>}
+
+      <div className='user-details-wrapper'>
+   {viewData.length >0 && <table style={{marginTop:"30px",overflowY:"scroll",maxHeight:"300px"}}>
+      <tbody style={{marginTop:"30px",overflowY:"scroll",maxHeight:"300px"}}>
         <tr>
             <th>S.No</th>
             <th>Course No</th>
@@ -70,21 +82,25 @@ export default function ViewCourses() {
                 <td>{data.coursename}</td>
                 <td>{data.commencementdate}</td>
                 <td>{data.duration}</td>
-                <td>NA</td>
-                <td>NA</td>
+                <td>{data.capacity}</td>
+                <td>{data.eligibility}</td>
                 <td>{data.category}</td>
                 <td>{data.mode}</td>
                 <td>{data.type}</td>
                 <td>{data.officer}</td>
                 <td>{data.faculty}</td>
                 <td>{data.coursedescription}</td>
-                <td><button scheduling_id={data.scheduling_id} onClick={handleSubmit}>Enroll</button></td>
+                <td><button scheduling_id={data.scheduling_id} onClick={handleSubmit}><BsFillPlusCircleFill/></button></td>
               </tr>
             )
           })
         }
           </tbody>
-    </table>
+    </table> }
+    {
+        viewData.length === 0  && 
+        <div style={{ width: "100%", textAlign: "center", fontSize: "30px", marginTop: "200px" }}>No data to show</div>
+      }
     </div>
     </div>
   )

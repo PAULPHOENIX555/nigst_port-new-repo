@@ -404,7 +404,7 @@ useEffect(() => {
   </div>
 ) : (
   <div>
-    <p>Nothing to show.</p>
+   
   </div>
 )}
 

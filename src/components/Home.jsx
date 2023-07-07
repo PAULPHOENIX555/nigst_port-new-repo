@@ -11,7 +11,7 @@ function mankibat() {
   window.open = ('https://www.mygov.in/group-issue/inviting-ideas-celebrate-100th-episode-mann-ki-baat/?target=inapp&type=group_issue&nid=336471','_blank');
 }
 
-// const Banner = [banner1, banner2]
+const Banner = [banner1, banner2]
 
 const Home = () => {
   const [images, setImages] = useState([])
@@ -74,7 +74,7 @@ function viewBannerImage(){
         <Carousel />
         <div className='flex flex-col md:flex-row lg:flex-row xl:row 2xl:flex-row ' >
           {banner.map((image, index) => (
-            <a href={image.url}  className=' w-full md:w-[50%] object-cover  ' target='_blank' rel="noreferrer"><img  src={image.signedUrl} alt={image.alt} /></a>
+            <a href={image.url}  className=' w-full md:w-[50%] object-cover  ' target='_blank'><img  src={image.signedUrl} alt={image.alt} className="h-full"/></a>
           ))} 
         </div>
       </div>
