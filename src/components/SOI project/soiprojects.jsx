@@ -3,11 +3,6 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import Slider from 'react-slick'
 import { useState } from 'react'
-// import img1 from './soiproject/01.jpg';
-// import img2 from './soiproject/coastal.jpg';
-// import img3 from './soiproject/nhp.jpg';
-// import img4 from './soiproject/vertical-datum.jpg';
-// import img5 from './soiproject/web-gis.jpg';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -22,7 +17,7 @@ function SCarousel() {
 
   const sliderSettings = {
   arrows: true,
-  slidesToShow: 4,
+  slidesToShow: 2,
   slidesToScroll: 1,
   infinite: true,
   fade: false,
@@ -54,7 +49,7 @@ function SCarousel() {
 };
 
   useEffect(()=>{
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_project";
+    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/web_project";
     axios.get(url).then((res)=>{
       setHotelCards(res.data.data);
       console.log(hotelCards)
@@ -63,43 +58,7 @@ function SCarousel() {
     })
   },[]);  
   
-  //  const hotelCards = [
-  //   {
-  //     imageSrc: img1,
-  //     title: '',
-  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
-  //     pricingText: 'SVAMITA',
-  //     features: [''],
-  //   },
-  //   {
-  //     imageSrc: img2,
-  //     title: '',
-  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
-  //     pricingText: 'Integrated Costal Hazard Zone Mapping',
-  //     features: [''],
-  //   },
-  //   {
-  //     imageSrc: img3,
-  //     title: '',
-  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
-  //     pricingText: 'National Hydrology Project',
-  //     features: [''],
-  //   },
-  //   {
-  //     imageSrc: img4,
-  //     title: '',
-  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
-  //     pricingText: 'Redefinition of Indian Vertical Application',
-  //     features: [''],
-  //   },
-  //   {
-  //     imageSrc: img5,
-  //     title: '',
-  //     description: 'Lorem ipsum dolor sit amet, consectur dolori',
-  //     pricingText: 'Web Gis based Governance Application',
-  //     features: [''],
-  //   },
-  // ];
+ 
 
   return (
     <div className='content p-[25px] md:p-[30] m-auto xl:p-8 w-full'>

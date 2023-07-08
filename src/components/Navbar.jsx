@@ -9,6 +9,8 @@ import Searchbar from './Searchbar';
 import { FaTimes } from 'react-icons/fa';
 import './announcement.css'
 import searchData from '../components/searchdata.json'
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
 
@@ -72,7 +74,7 @@ const Navbar = () => {
 
   // const Activenavbarr = () => {
   //   const location = useLocation();
-  
+
   //   const activenavbarStyle = {
   //     '/': {
   //       Color: 'red',
@@ -83,20 +85,41 @@ const Navbar = () => {
   const handleAnnouncementClick = () => {
     setShowAnnouncement(!showAnnouncement);
   };
-
-  const [activeIndex, setActiveIndex] = useState(0);
   const [announcements, setAnnouncements] = useState([]);
-  const announcementsPerPage = 2;
+  const [activeSlide, setActiveSlide] = useState(0);
 
-  const handlePrevClick = () => {
-    setActiveIndex((prevIndex) => (prevIndex - announcementsPerPage >= 0 ? prevIndex - announcementsPerPage : 0));
+  useEffect(() => {
+    // Fetch announcements from the API
+    fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/webannouncement')
+      .then(response => response.json())
+      .then(data => {
+        // Assuming the API response contains an array of announcement objects
+        setAnnouncements(data.announcement);
+      })
+      .catch(error => {
+        console.error('Error retrieving announcements:', error);
+      });
+  }, []);
+ 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide(prevSlide => (prevSlide + 1) % announcements.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [announcements]);
+
+  const handleSwipe = index => {
+    setActiveSlide(index);
   };
+
+
+
+
+
+
+
   
-  const handleNextClick = () => {
-    const maxIndex = Math.max(0, announcements.length - announcementsPerPage);
-    setActiveIndex((prevIndex) => (prevIndex + announcementsPerPage <= maxIndex ? prevIndex + announcementsPerPage : maxIndex));
-  };
-
   const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
@@ -111,30 +134,6 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-useEffect(() => {
-  const fetchAnnouncements = async () => {
-    try {
-      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/webannouncement');
-      const data = await response.json();
-      setAnnouncements(data.announcement);
-    } catch (error) {
-      console.error('Error fetching announcements:', error);
-    }
-  };
-
-  fetchAnnouncements();
-
-  const intervalId = setInterval(() => {
-    setActiveIndex((activeIndex + 1) % announcements.length);
-  }, 3000);
-
-  return () => clearInterval(intervalId);
-}, []);
-
-
-
-
 
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
   const sidePanelRef = useRef(null);
@@ -209,7 +208,7 @@ useEffect(() => {
             </div>
           </ul>
 
-          <Link exact to="/"   className="block mt-4 md:py-2 lg:inline-block lg:mt-0 text-white hover:text-yellow-300 mr-4 text-base">
+          <Link exact to="/" className="block mt-4 md:py-2 lg:inline-block lg:mt-0 text-white hover:text-yellow-300 mr-4 text-base">
             Home
           </Link>
 
@@ -349,64 +348,37 @@ useEffect(() => {
           {showButton && (
             <button className="block md:py-2 ml-0 mt-3 lg:inline-block lg:mt-0 text-white hover:text-yellow-300 mr-4  text-base  float-right absolute top-0 right-0"
               onClick={handleAnnouncementClick}>Announcements</button>)}
-     {showAnnouncement && announcements.length > 0 ? (
-  <div>
-    <div className="announcement-container">
-      <div id="ann-close-icon">
-        <button onClick={handleAnnouncementClick}>
-          <FaTimes size={20} />
-        </button>
-      </div>
-      <Link to="/Tables/Announcementtable">
-        <h3 className="hover:text-[#ffcb00] text-lg py-1 text-white">Announcement</h3>
-      </Link>
-      <div className="Acarousel-container">
-        <div className="Acarousel-wrapper">
-          {announcements.reduce((accumulator, announcement, index) => {
-            if (index % 2 === 0) {
-              accumulator.push(
-                <div key={index} className={`Acarousel-card ${activeIndex === index ? 'active' : ''}`}>
-                  <h4>Posted on: {announcement.posteddate}</h4>
-                  <p>
-                    <span>Call for Proposal:</span> {announcement.description}
-                  </p>
-                  {announcements[index + 1] && (
-                    <>
-                      <h4>Posted on: {announcements[index + 1].posteddate}</h4>
-                      <p>
-                        <span>Call for Proposal:</span> {announcements[index + 1].description}
-                      </p>
-                    </>
-                  )}
+          {showAnnouncement ? (
+            <div>
+              <div className="announcement-container">
+                <div id="ann-close-icon">
+                  <button onClick={handleAnnouncementClick}>
+                    <FaTimes size={20} />
+                  </button>
                 </div>
-              );
-            }
-            return accumulator;
-          }, [])}
-        </div>
-        <div className="Acarousel-indicators">
-          {announcements.map((_, index) => (
-            <div
-              key={index}
-              className={`Acarousel-indicator ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => setActiveIndex(index)}
-            ></div>
-          ))}
-        </div>
-        <button className="prev-btn" onClick={handlePrevClick}>
-          ❮
-        </button>
-        <button className="next-btn" onClick={handleNextClick}>
-          ❯
-        </button>
-      </div>
+                <Link to="/Tables/Announcementtable">
+                  <h3 className="hover:text-[#ffcb00] text-lg py-1 text-white  underline">Announcement</h3>
+                </Link>
+                <Carousel  showThumbs={false} showStatus={true} autoplay interval={3000}
+      selectedItem={activeSlide}
+      onSwipe={handleSwipe}
+>
+  {announcements.map((announcement, index) => (
+    <div key={index} className='mb-24 border-t-2 mt-2 px-4'>
+      <h2 className=' mt-5 mb-5 text-white text-lg'>POSTED ON: {announcement.posteddate}</h2>
+      <p className='font-semibold text-white text-lg'>{announcement.title}</p>
+      <p className='text-base text-white '>{announcement.description}</p>
     </div>
-  </div>
-) : (
-  <div>
-   
-  </div>
-)}
+  ))}
+</Carousel>
+
+              </div>
+            </div>
+          ) : (
+            <div>
+
+            </div>
+          )}
 
 
         </div>

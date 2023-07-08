@@ -99,9 +99,9 @@ const ImageGallery = () => {
             ))}
           </Carousel>
         ) : (
-          <div>No images available</div> // Render a message if no images exist
+          <div className='item-center text-3xl' style={{ justifyContent: 'center', marginTop: '50px',marginLeft:"650px",marginBottom:"50px" }}>No Albums available</div> 
         )}
-        {images.length > 0 && ( // Check if images exist
+        {images.length > 0 && ( 
           <div className="absolute top-7 right-7 lg:top-5 lg:right-9 p-2">
             <div className="flex justify-center lg:mt-3">
               <button

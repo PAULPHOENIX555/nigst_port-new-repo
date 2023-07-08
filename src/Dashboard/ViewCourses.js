@@ -62,7 +62,7 @@ export default function ViewCourses() {
             <th>Commencement Date</th>
             <th>Course Duration</th>
             <th>Course Capacity</th>
-            <th>Eligibilty</th>
+            <th>Eligibility</th>
             <th>Course Category</th>
             <th>Course Mode</th>
             <th>Course Type</th>
